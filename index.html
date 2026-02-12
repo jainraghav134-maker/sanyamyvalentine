@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sanya ❤️ My Valentine</title>
 
-
-
 <style>
 body {
     margin: 0;
@@ -17,15 +15,12 @@ body {
     position: relative;
 }
 
-/* Animated Handwriting */
 .handwriting {
     font-family: cursive;
     font-size: 48px;
     color: #ff2e63;
     margin-top: 30px;
 }
-
-
 
 .container {
     padding: 20px;
@@ -69,7 +64,7 @@ button {
     to { transform: translateY(110vh); }
 }
 
-/* Initial Hearts */
+/* Floating Initial Hearts */
 .initial-heart {
     position: fixed;
     top: -20px;
@@ -108,29 +103,25 @@ You’ve been my favourite memory and my Perfect song 🎶"
 
 </div>
 
-<!-- Background Instrumental -->
+<!-- Background Music -->
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mp3">
 </audio>
 
-
 <script>
 
-// Proposal
 function showProposal(){
     document.getElementById("proposal").style.display="block";
 
     var music = document.getElementById("bgMusic");
-
-    music.volume = 0.3;   // 🔊 Set soft volume (30%)
+    music.volume = 0.3;
 
     if (music.paused) {
         music.play().catch(function(error){
-            console.log("Playback prevented:", error);
+            console.log(error);
         });
     }
 }
-
 
 function moveNo(){
     var x = Math.random() * (window.innerWidth - 100);
@@ -142,11 +133,28 @@ function moveNo(){
 
 function yesClicked(){
     document.body.innerHTML = `
-    <div style="margin-top:150px;">
-    <h1 style="color:#ff2e63;">YAYYY ❤️😭</h1>
-    <h2>I love you Sanya 💕</h2>
-    <h2>Forever starts now 💍</h2>
+    <div style="margin-top:100px; animation: fadeIn 2s;">
+        <h1 style="color:#ff2e63; font-size:48px;">I love you Sanya ❤️</h1>
+        <h2 style="color:#ff2e63;">Forever starts now 💍</h2>
+
+        <img src="cute.HEIC"
+             style="width:80%; max-width:350px; margin-top:30px; border-radius:20px;
+             box-shadow:0 10px 25px rgba(0,0,0,0.2);
+             animation: float 3s ease-in-out infinite;">
     </div>
+
+    <style>
+    @keyframes fadeIn {
+        from { opacity:0; transform: translateY(20px); }
+        to { opacity:1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+    </style>
     `;
 }
 
@@ -156,12 +164,12 @@ setInterval(function(){
     petal.className = "petal";
     petal.style.left = Math.random() * window.innerWidth + "px";
     petal.style.animationDuration = (Math.random() * 3 + 3) + "s";
-    petal.innerHTML = "&#127800;";   // 🌸
+    petal.innerHTML = "&#127800;";
     document.body.appendChild(petal);
     setTimeout(() => petal.remove(), 6000);
 }, 300);
 
-// Floating Initial Hearts (R ❤️ S)
+// Floating Initial Hearts
 setInterval(function(){
     var heart = document.createElement("div");
     heart.className = "initial-heart";
