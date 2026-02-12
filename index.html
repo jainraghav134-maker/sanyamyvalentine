@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanya ❤️ My Valentine</title>
+
+
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #ffd6e7, #fff5f9);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated Handwriting */
+.handwriting {
+    font-family: cursive;
+    font-size: 48px;
+    color: #ff2e63;
+    margin-top: 30px;
+}
+
+
+
+.container {
+    padding: 20px;
+}
+
+.photo {
+    width: 90%;
+    max-width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    margin-top: 15px;
+}
+
+.memory {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #444;
+    font-style: italic;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: #ff2e63;
+    color: white;
+}
+
+/* Petals */
+.petal {
+    position: fixed;
+    top: -10px;
+    font-size: 24px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh); }
+}
+
+/* Initial Hearts */
+.initial-heart {
+    position: fixed;
+    top: -20px;
+    font-size: 20px;
+    color: #ff2e63;
+    animation: floatHeart linear infinite;
+}
+
+@keyframes floatHeart {
+    to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="handwriting">Sanya &#10084;</div>
+
+<div class="container">
+
+<img src="us.jpg" class="photo">
+
+<div class="memory">
+"Who knew All Saints would give me my saint?  
+From that day to this mountain sunset…  
+You’ve been my favourite memory and my Perfect song 🎶"
+</div>
+
+<button onclick="showProposal()">Something for you 💕</button>
+
+<div id="proposal" style="display:none;">
+<h2>Will you be my Valentine? 💖</h2>
+<button onclick="yesClicked()">YES 💘</button>
+<button id="noBtn" onmouseover="moveNo()">No 😢</button>
+</div>
+
+</div>
+
+<!-- Background Instrumental -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6b72dbb0b4.mp3?filename=romantic-piano-110624.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+// Proposal
+function showProposal(){
+    document.getElementById("proposal").style.display="block";
+
+    var music = document.getElementById("bgMusic");
+
+    music.volume = 0.3;   // 🔊 Set soft volume (30%)
+
+    if (music.paused) {
+        music.play().catch(function(error){
+            console.log("Playback prevented:", error);
+        });
+    }
+}
+
+
+function moveNo(){
+    var x = Math.random() * (window.innerWidth - 100);
+    var y = Math.random() * (window.innerHeight - 100);
+    document.getElementById("noBtn").style.position = "absolute";
+    document.getElementById("noBtn").style.left = x + "px";
+    document.getElementById("noBtn").style.top = y + "px";
+}
+
+function yesClicked(){
+    document.body.innerHTML = `
+    <div style="margin-top:150px;">
+    <h1 style="color:#ff2e63;">YAYYY ❤️😭</h1>
+    <h2>I love you Sanya 💕</h2>
+    <h2>Forever starts now 💍</h2>
+    </div>
+    `;
+}
+
+// Petals
+setInterval(function(){
+    var petal = document.createElement("div");
+    petal.className = "petal";
+    petal.style.left = Math.random() * window.innerWidth + "px";
+    petal.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    petal.innerHTML = "&#127800;";   // 🌸
+    document.body.appendChild(petal);
+    setTimeout(() => petal.remove(), 6000);
+}, 300);
+
+// Floating Initial Hearts (R ❤️ S)
+setInterval(function(){
+    var heart = document.createElement("div");
+    heart.className = "initial-heart";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (Math.random() * 4 + 4) + "s";
+    heart.innerHTML = "R &#10084; S";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+}, 1500);
+
+</script>
+
+</body>
+</html>
